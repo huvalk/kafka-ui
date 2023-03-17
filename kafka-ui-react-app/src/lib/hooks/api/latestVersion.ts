@@ -7,9 +7,11 @@ import {
 const fetchLatestVersion = async () => {
   const data = await fetch(GIT_REPO_LATEST_RELEASE_LINK).then((res) =>
     res.json()
+  ).catch((err) => 
+    console.log("Github unavailable.", err)
   );
 
-  return data;
+  return {} ? data === undefined : data;
 };
 
 export function useLatestVersion() {
